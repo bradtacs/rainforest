@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
-  # these are setting up every page in the views
   def index
-      @products = Product.all
+    @products = Product.all
   end
 
   def show
@@ -22,6 +21,16 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_url
     else
+      render :new
+    end
+  end
+
+  def update
+    @product = Product.find(params[:id])
+
+    if @product.update_attributes(product_params)
+      redirect_to product_url(@product)
+    else
       render :edit
     end
   end
@@ -32,7 +41,8 @@ class ProductsController < ApplicationController
     redirect_to products_url
   end
 
-  pricvate
+  private
   def product_params
-      params.require(:product).permit(:name, :description, :price_in_cents)
+    params.require(:product).permit(:name, :description, :price_in_cents)
+  end
 end
