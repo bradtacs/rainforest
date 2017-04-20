@@ -1,5 +1,8 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<h1>Products</h1>
 
-make array loop thruogh
-product.formatted_price
+<%@products.each do |product| %>
+<hr>
+<br>
+ <p>NAME: <%= product.name%></p><p>DESCRIPTION: <%= product.description%></p><p>PRICE:<%=product.formatted_price%></p>
+
+<%end%>

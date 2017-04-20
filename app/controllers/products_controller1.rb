@@ -1,15 +1,11 @@
 class ProductsController < ApplicationController
   # these are setting up every page in the views
-  def index
-      @products = Product.all
-  end
 
   def show
-  end
+    @product = Product.find(params[:id])
 
-  def new
-  end
-
-  def edit
+    if current_user
+      @review = @product.reviews.build
+    end
   end
 end
