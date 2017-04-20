@@ -1,13 +1,13 @@
 class ReviewsController < ApplicationController
-  before_action :load_product
-
+before_action :ensure_logged_in, only: [:create, :destroy]
+   before_action :load_product
    def show
      @review = Review.find(params[:id])
    end
 
    def create
      @review = @product.reviews.build(review_params)
-     @review.user = current_user
+     @review.user_id = current_user
 
      # Check out this article on [.build](http://stackoverflow.com/questions/783584/ruby-on-rails-how-do-i-use-the-active-record-build-method-in-a-belongs-to-rel)
      # You could use a longer alternate syntax if it makes more sense to you
